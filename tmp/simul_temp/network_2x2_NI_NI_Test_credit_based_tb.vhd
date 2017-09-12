@@ -185,19 +185,19 @@ begin
   elsif rising_edge(clk) then
     if configure_uart = True then
       uart_0_reg_write_byte_enable <= "1111";
-      uart_0_reg_data_write <= "00000000000000000000000000001010";
+      uart_0_reg_data_write <= "00000000000000000000000110110010";
       uart_0_reg_enable <= '1';
 
       uart_1_reg_write_byte_enable <= "1111";
-      uart_1_reg_data_write <= "00000000000000000000000000001010";
+      uart_1_reg_data_write <= "00000000000000000000000110110010";
       uart_1_reg_enable <= '1';
 
       uart_2_reg_write_byte_enable <= "1111";
-      uart_2_reg_data_write <= "00000000000000000000000000001010";
+      uart_2_reg_data_write <= "00000000000000000000000110110010";
       uart_2_reg_enable <= '1';
 
       uart_3_reg_write_byte_enable <= "1111";
-      uart_3_reg_data_write <= "00000000000000000000000000001010";
+      uart_3_reg_data_write <= "00000000000000000000000110110010";
       uart_3_reg_enable <= '1';
 
       configure_uart := False;
@@ -209,19 +209,19 @@ begin
 
       uart_0_reg_enable <= '0';
       uart_0_reg_write_byte_enable <= "0000";
-      uart_0_reg_data_write <= "00000000000000000000000000001010";
+      uart_0_reg_data_write <= "00000000000000000000000110110010";
 
       uart_1_reg_enable <= '0';
       uart_1_reg_write_byte_enable <= "0000";
-      uart_1_reg_data_write <= "00000000000000000000000000001010";
+      uart_1_reg_data_write <= "00000000000000000000000110110010";
 
       uart_2_reg_enable <= '0';
       uart_2_reg_write_byte_enable <= "0000";
-      uart_2_reg_data_write <= "00000000000000000000000000001010";
+      uart_2_reg_data_write <= "00000000000000000000000110110010";
 
       uart_3_reg_enable <= '0';
       uart_3_reg_write_byte_enable <= "0000";
-      uart_3_reg_data_write <= "00000000000000000000000000001010";
+      uart_3_reg_data_write <= "00000000000000000000000110110010";
 
       if now > 3 ms then
         uart_0_data_in <= uart_0_data_in + 1;
@@ -290,6 +290,28 @@ port map( not_reset, clk,
         uart_write => uart_write_1,
         uart_read => uart_read_1
    );
+
+   uart1: sim_uart generic map (log_file => "uart_1.txt") port map(
+
+    clk          => clk,
+    reset        => not_reset,
+    enable_read  => uart_1_enable_read,
+    enable_write => uart_1_enable_write,
+    data_in      => uart_1_data_in,
+    data_out     => uart_1_data_out,
+    uart_read    => uart_write_1,
+    uart_write   => uart_read_1,
+    busy_write   => uart_1_busy_write,
+    data_avail   => uart_1_data_avail,
+
+    reg_enable            => uart_1_reg_enable ,
+    reg_write_byte_enable => uart_1_reg_write_byte_enable,
+    reg_address           => uart_count_value_address,
+    reg_data_write        => uart_1_reg_data_write,
+    reg_data_read         => uart_1_reg_data_read
+
+  );
+
 PE_2: NoC_Node
 generic map( current_address => 2,
 	stim_file => "code_2.txt",
@@ -307,6 +329,28 @@ port map( not_reset, clk,
         uart_write => uart_write_2,
         uart_read => uart_read_2
    );
+
+   uart2: sim_uart generic map (log_file => "uart_2.txt") port map(
+
+    clk          => clk,
+    reset        => not_reset,
+    enable_read  => uart_2_enable_read,
+    enable_write => uart_2_enable_write,
+    data_in      => uart_2_data_in,
+    data_out     => uart_2_data_out,
+    uart_read    => uart_write_2,
+    uart_write   => uart_read_2,
+    busy_write   => uart_2_busy_write,
+    data_avail   => uart_2_data_avail,
+
+    reg_enable            => uart_2_reg_enable ,
+    reg_write_byte_enable => uart_2_reg_write_byte_enable,
+    reg_address           => uart_count_value_address,
+    reg_data_write        => uart_2_reg_data_write,
+    reg_data_read         => uart_2_reg_data_read
+
+  );
+
 PE_3: NoC_Node
 generic map( current_address => 3,
 	stim_file => "code_3.txt",
@@ -323,6 +367,27 @@ port map( not_reset, clk,
         RX => TX_L_3,
         uart_write => uart_write_3,
         uart_read => uart_read_3
+   );
+
+   uart3: sim_uart generic map (log_file => "uart_3.txt") port map(
+
+    clk          => clk,
+    reset        => not_reset,
+    enable_read  => uart_3_enable_read,
+    enable_write => uart_3_enable_write,
+    data_in      => uart_3_data_in,
+    data_out     => uart_3_data_out,
+    uart_read    => uart_write_3,
+    uart_write   => uart_read_3,
+    busy_write   => uart_3_busy_write,
+    data_avail   => uart_3_data_avail,
+
+    reg_enable            => uart_3_reg_enable ,
+    reg_write_byte_enable => uart_3_reg_write_byte_enable,
+    reg_address           => uart_count_value_address,
+    reg_data_write        => uart_3_reg_data_write,
+    reg_data_read         => uart_3_reg_data_read
+
    );
 
 -- connecting the packet generators
