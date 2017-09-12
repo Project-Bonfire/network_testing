@@ -198,9 +198,9 @@ begin  --architecture
       case cpu_address(30 downto 28) is
       when "000" =>         --internal RAM
          if ((ram_address_late = NI_reserved_data_address) or (ram_address_late = NI_flag_address)
-            or (ram_address_late = NI_counter_address)) then
+            or (ram_address_late = NI_counter_address)) or (ram_address_late = NI_node_address) then
             cpu_data_r <= ram_data_r_ni;
-         elsif ram_address_late = uart_count_value_address then 
+         elsif ram_address_late = uart_count_value_address then
                 cpu_data_r <= ram_data_r_uart;
          else
             cpu_data_r <= ram_data_r;
@@ -209,9 +209,9 @@ begin  --architecture
          if cache_checking = '1' then
             --cpu_data_r <= ram_data_r; --cache
             if ((ram_address_late = NI_reserved_data_address) or (ram_address_late = NI_flag_address)
-                or (ram_address_late = NI_counter_address)) then
+                or (ram_address_late = NI_counter_address)) or (ram_address_late = NI_node_address) then
                cpu_data_r <= ram_data_r_ni;
-            elsif ram_address_late = uart_count_value_address then 
+            elsif ram_address_late = uart_count_value_address then
                 cpu_data_r <= ram_data_r_uart;
             else
                cpu_data_r <= ram_data_r; --cache
