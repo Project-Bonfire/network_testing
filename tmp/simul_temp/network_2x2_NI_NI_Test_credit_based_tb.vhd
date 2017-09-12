@@ -15,6 +15,7 @@ use work.TB_Package.all;
 USE ieee.numeric_std.ALL;
 use IEEE.math_real."ceil";
 use IEEE.math_real."log2";
+use work.mlite_pack.all;
 
 entity tb_network_2x2 is
 end tb_network_2x2;
@@ -93,13 +94,7 @@ component sim_uart is
         );
 end component; --entity uart
 
--- memory mapped addresses
- constant  NI_reserved_data_address   : std_logic_vector(29 downto 0) := "000000000000000001111111111111";
- constant  NI_flag_address            : std_logic_vector(29 downto 0) := "000000000000000010000000000000";
- constant  NI_counter_address         : std_logic_vector(29 downto 0) := "000000000000000010000000000001";
- constant  NI_reconfiguration_address : std_logic_vector(29 downto 0) := "000000000000000010000000000010";
- constant  NI_self_diagnosis_address  : std_logic_vector(29 downto 0) := "000000000000000010000000000011";
- constant  uart_count_value_address   : std_logic_vector(29 downto 0) := "000000000000000010000000000100";
+
 -- generating bulk signals...
 	signal RX_L_0, TX_L_0:  std_logic_vector (31 downto 0);
 	signal credit_counter_out_0:  std_logic_vector (1 downto 0);

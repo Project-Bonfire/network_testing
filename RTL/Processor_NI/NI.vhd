@@ -407,6 +407,8 @@ process(N2P_read_en, N2P_Data_out, old_address, flag_register) begin
     data_read <= flag_register;
   elsif old_address = NI_counter_address then
   	data_read <= "000000000000000000000000000000" & counter_register;
+  elsif old_address = NI_node_address then
+  	data_read <= std_logic_vector(to_unsigned(current_address, 32));
   else
     data_read <= (others => 'U');
   end if;
