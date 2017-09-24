@@ -1,0 +1,14 @@
+tmp/bin/
+.directory
+tmp/simul_temp/.directory
+tmp/simul_temp/tcl_stacktrace.txt
+tmp/simul_temp/transcript
+tmp/simul_temp/uart_0.txt
+tmp/simul_temp/uart_1.txt
+tmp/simul_temp/uart_2.txt
+tmp/simul_temp/uart_3.txt
+tmp/simul_temp/vsim.wlf
+tmp/simul_temp/wave.vcd
+tmp/simul_temp/work/
+tmp/transcript
+transcript
