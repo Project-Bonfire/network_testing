@@ -109,8 +109,8 @@ package mlite_pack is
    constant NI_reserved_data_address  : std_logic_vector(29 downto 0) := "000000000000000001111111111111";
    constant NI_flag_address           : std_logic_vector(29 downto 0) := "000000000000000010000000000000";
    constant NI_counter_address        : std_logic_vector(29 downto 0) := "000000000000000010000000000001";
-   constant  NI_node_address          : std_logic_vector(29 downto 0) := "000000000000000010000000000010";
-   constant  uart_count_value_address : std_logic_vector(29 downto 0) := "000000000000000010000000000100";
+   constant NI_node_address           : std_logic_vector(29 downto 0) := "000000000000000010000000000010";
+   constant uart_count_value_address  : std_logic_vector(29 downto 0) := "000000000000000010000000000100";
 
 
    function bv_adder(a     : in std_logic_vector;
